@@ -17,5 +17,11 @@ async function displayData(data, param){
   const data_list = await data;
   const selected_data = data_list.map(item => item[param]);
   
-  console.log(selected_data)
+  const options = selected_data
+    .map(city => `<option value="${city}"></option>`)
+    .join("");
+    
+  console.log(options)
+  document.getElementById("city_list").innerHTML = options;
+
 }
