@@ -1,40 +1,34 @@
 //displayCurrentWeather();
 //displayCities(getCities("res/city.list.json"), "name")
-//getForecast("London");
+//getForecastData("London");
+//filterForecastData("London")
+//displayCityNames()
+displayForecast("London")
 
-displayCityNames()
-
-function getUrl(param){
+async function getForecastData(param){
+  
   const API_KEY = "408624e0954a17c527a83f72a54e58d8"
-
-  const url = `api.openweathermap.org/data/2.5/forecast?q=${param}&appid=${API_KEY}`;
-  return url;
-}
-
-async function getForecast(param){
   
-  try{
-    const URL = getUrl(param)
+  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${param}&appid=${API_KEY}`;
     
-    const response = await fetch(URL);
-    const result = await response.json();
+  const response = await fetch(url);
+  const result = await response.json();
 
-    console.log(result);
-
-  } catch (error){
-    console.error(error);
-  }
+  return result;
 }
 
-function displayForecast(city_list) {
-
-  const city_field = document.getElementById("select_city");
+async function buildForecast(param) {
   
-  for(i in city_list){
-    if (city_field.innerText == i){
-      console.log("test");
-    } 
-  } 
+  const data = await getForecastData(param);
+  
+  return `<p>${data.city.name}</p>`; 
+}
+
+async function displayForecast(param){
+
+  const forecast_html = buildForecast(param).join("");
+
+  document.getElementById("weather_display").innerHTML = forecast_html;
 }
 
 async function getCities(src){
