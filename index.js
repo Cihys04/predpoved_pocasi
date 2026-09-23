@@ -1,6 +1,5 @@
-//displayCurrentWeather();
-//displayCities(getCities("res/city.list.json"), "name")
-//getForecastData("London");
-//filterForecastData("London")
-//displayCityNames()
-displayForecast("Name");
+import { displayForecast } from "./forecast.js"
+
+let forecast_param = document.getElementById("select_city").value;
+
+window.onload = displayForecast(forecast_param);

@@ -1,4 +1,4 @@
-displayForecast("London")
+
 
 async function getForecastData(param){
   
@@ -12,16 +12,40 @@ async function getForecastData(param){
   return result;
 }
 
-async function buildForecast(param) {
-  
-  const data = await getForecastData(param);
-  
-  return `<p>${data.city.name}</p>`; 
+async function filterForecastData(param) {
+    const data = await getForecastData(param)
+    const filteredData = [];
+
+    /*filteredData.push(data.list[].main.temp);
+    console.log(filteredData);*/
+
+    for(let i = 0; i < data.list.length; i++){
+        filteredData.push(data.list[i].main.temp);
+    }
+    
+    return filteredData;
 }
 
-async function displayForecast(param){
+async function buildForecast(param) {
+  
+  const data = await filterForecastData(param);
+  const list_items = [];
 
-  const forecast_html = buildForecast(param).join("");
+  for(let i = 0; i < data.length; i++){
+
+    list_items.push(`<li>Teplota:${data[i]}</li>`);
+  }
+
+  const html = "<ol>" + list_items + "</ol>"; 
+
+  return html; 
+}
+
+export async function displayForecast(param){
+
+  const forecast_html = await buildForecast(param);
+
+  console.log(forecast_html);
 
   document.getElementById("weather_display").innerHTML = forecast_html;
 }

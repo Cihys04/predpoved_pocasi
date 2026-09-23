@@ -1,4 +1,4 @@
-async function getCities(src){
+async function getCitiesData(src){
   const response = await fetch(src);
   const result = await response.json();
 
@@ -6,24 +6,24 @@ async function getCities(src){
   return result;  
 }
 
-async function getCityNames(){
+async function filterCitiesData(){
 
-  const cities = await getCities("res/city.list.json");  
+  const cities = await getCitiesData("res/city.list.json");  
   return cities.map(item => item["name"]);
 }
 
-async function buildCityNames(){
+async function buildCityData(){
 
-  const names = await getCityNames()
+  const names = await filterCitiesData()
 
   return names
       .map(city => `<option value="${city}"></option>`)
       .join("");
 }
 
-async function displayCityNames(){
+async function displayCityData(){
       
-  const cities_html = await buildCityNames()
+  const cities_html = await buildCityData()
 
   document.getElementById("city_list").innerHTML = cities_html;
 
