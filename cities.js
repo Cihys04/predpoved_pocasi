@@ -21,10 +21,9 @@ async function buildCityData(){
       .join("");
 }
 
-async function displayCityData(){
+export async function displayCityData(){
       
   const cities_html = await buildCityData()
 
   document.getElementById("city_list").innerHTML = cities_html;
-
 }
