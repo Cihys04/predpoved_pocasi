@@ -1,5 +1,5 @@
 import { Forecast } from "./forecast.js"
-import { Cities } from "./cities.js";
+//import { Cities } from "./cities.js";
 
 let select_city = document.querySelector(".select_city");
 
