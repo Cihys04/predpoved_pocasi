@@ -1,43 +1,48 @@
+export class Forecast {
 
+    async getForecastData(param) {
 
-async function getForecastData(param){
-  
-  const API_KEY = "408624e0954a17c527a83f72a54e58d8"
-  
-  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${param}&appid=${API_KEY}&units=metric`;
-    
-  const response = await fetch(url);
-  const result = await response.json();
+        const API_KEY = "408624e0954a17c527a83f72a54e58d8"
 
-  return result;
-}
+        const url = `http://api.openweathermap.org/data/2.5/forecast?q=${param}&appid=${API_KEY}&units=metric`;
 
-async function filterForecastData(param) {
-    const data = await getForecastData(param)
-    const filteredData = [];
+        const response = await fetch(url);
+        const result = await response.json();
 
-    for(let i = 0; i < data.list.length; i++){
-        filteredData.push(data.list[i].main.temp);
+        return result;
     }
-    
-    return filteredData;
-}
 
-async function buildForecast(param) {
-  
-  const data = await filterForecastData(param);
-  const list_items = [];
+    async filterForecastData(param) {
+        const data = await this.getForecastData(param)
+        const filteredData = [];
 
-  for(let i = 0; i < data.length; i++){
-    list_items.push(`<li>Teplota: ${data[i]} stupňů Celsia </li>`);
-  }
+        for (let i = 0; i < data.list.length; i++) {
+            filteredData.push(data.list[i].main.temp);
+        }
 
-  const html = `<ol>${list_items.join("")}</ol>`; 
-  return html; 
-}
+        return filteredData;
+    }
 
-export async function displayForecast(param){
+    async buildForecast(param) {
 
-  const forecast_html = await buildForecast(param);
-  document.getElementById("weather_display").innerHTML = forecast_html;
+        const data = await this.filterForecastData(param);
+        const list_items = [];
+
+        for (let i = 0; i < data.length; i++) {
+
+            list_items.push(`<li>Teplota: ${data[i]} stupňů Celsia</li>`);
+        }
+
+        const html = "<ul>" + list_items.join("") + "</ul>";
+
+        return html;
+    }
+
+    async displayForecast(param) {
+
+        const forecast_html = await this.buildForecast(param);
+        document.getElementById("weather_display").innerHTML = forecast_html;
+
+        console.log(forecast_html);
+    }
 }

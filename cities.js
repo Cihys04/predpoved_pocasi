@@ -1,29 +1,31 @@
-async function getCitiesData(src){
-  const response = await fetch(src);
-  const result = await response.json();
+export class Cities {
+    async getCitiesData(src) {
+        const response = await fetch(src);
+        const result = await response.json();
 
-  //console.log(result)
-  return result;  
-}
+        //console.log(result)
+        return result;
+    }
 
-async function filterCitiesData(){
+    async filterCitiesData() {
 
-  const cities = await getCitiesData("res/city.list.json");  
-  return cities.map(item => item["name"]);
-}
+        const cities = await getCitiesData("res/city.list.json");
+        return cities.map(item => item["name"]);
+    }
 
-async function buildCityData(){
+    async buildCityData() {
 
-  const names = await filterCitiesData()
+        const names = await filterCitiesData()
 
-  return names
-      .map(city => `<option value="${city}"></option>`)
-      .join("");
-}
+        return names
+            .map(city => `<option value="${city}"></option>`)
+            .join("");
+    }
 
-export async function displayCityData(){
-      
-  const cities_html = await buildCityData()
+    async displayCityData() {
 
-  document.getElementById("city_list").innerHTML = cities_html;
+        const cities_html = await buildCityData()
+
+        document.getElementById("city_list").innerHTML = cities_html;
+    }
 }

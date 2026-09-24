@@ -1,10 +1,13 @@
-import { displayForecast } from "./forecast.js"
-//import { displayCityData } from "./cities.js";
+import { Forecast } from "./forecast.js"
+import { Cities } from "./cities.js";
 
 let select_city = document.querySelector(".select_city");
 
-//window.onload = displayCityData();
+const forecast = new Forecast();
+
+//const cities = new Cities();
+//window.onload = cities.displayCityData(); 
 
 select_city.addEventListener("input", function () {
-    displayForecast(select_city.value);
+    console.log(forecast.displayForecast(select_city.value));
 })
