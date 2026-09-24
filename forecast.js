@@ -16,9 +16,6 @@ async function filterForecastData(param) {
     const data = await getForecastData(param)
     const filteredData = [];
 
-    /*filteredData.push(data.list[].main.temp);
-    console.log(filteredData);*/
-
     for(let i = 0; i < data.list.length; i++){
         filteredData.push(data.list[i].main.temp);
     }
@@ -32,7 +29,6 @@ async function buildForecast(param) {
   const list_items = [];
 
   for(let i = 0; i < data.length; i++){
-
     list_items.push(`<li>Teplota:${data[i]}</li>`);
   }
 
@@ -44,8 +40,5 @@ async function buildForecast(param) {
 export async function displayForecast(param){
 
   const forecast_html = await buildForecast(param);
-
-  console.log(forecast_html);
-
   document.getElementById("weather_display").innerHTML = forecast_html;
 }

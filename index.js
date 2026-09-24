@@ -1,5 +1,8 @@
 import { displayForecast } from "./forecast.js"
 
-let forecast_param = document.getElementById("select_city").value;
+let select_city = document.querySelector(".select_city");
 
-window.onload = displayForecast(forecast_param);
+
+select_city.addEventListener("input", function () {
+    displayForecast(select_city.value);
+})
