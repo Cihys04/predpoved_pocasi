@@ -1,8 +1,22 @@
-.container{
+body{
+    background-color: azure;
+}
 
+ol{
+    border: 3px solid black;
+    background-color: blueviolet;
+}
+
+.select_city{
+    width: 100%;
+}
+
+.container{
+    flex: auto;
+    flex-direction: column;
     font-family: sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+
 }

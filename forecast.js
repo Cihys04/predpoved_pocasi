@@ -33,7 +33,6 @@ async function buildForecast(param) {
   }
 
   const html = `<ol>${list_items.join("")}</ol>`; 
-
   return html; 
 }
 
