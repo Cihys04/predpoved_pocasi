@@ -4,7 +4,7 @@ Tato aplikace zobrazuje předpověď počasí na 5 dní v časovém rozmezí tř
 
 ## Jak aplikaci použít
 
-Nejdřív si aplikaci stáhněte, buď jako zip, nebo přes git příkazem `https://github.com/Cihys04/predpoved_pocasi.git`
+Nejdřív si aplikaci stáhněte, buď jako zip, nebo přes git příkazem `git clone https://github.com/Cihys04/predpoved_pocasi.git`
   
 Ke správnému rozjetí aplikace je zapotřebí zapnout Apache server na localhostu. Nejjednoduší způsob je [nainstalovat Python](https://www.python.org/downloads/) přes příkaz `python3 -m http.server`
 
